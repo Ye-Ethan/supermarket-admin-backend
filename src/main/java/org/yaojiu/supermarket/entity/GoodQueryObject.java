@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Past;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.util.Date;
 

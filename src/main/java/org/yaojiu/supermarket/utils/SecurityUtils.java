@@ -3,14 +3,13 @@ package org.yaojiu.supermarket.utils;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
 @ConfigurationProperties(prefix = "sec")
-public class SecurityUtil {
+public class SecurityUtils {
     private int iterations;
     private int memory;
     private int parallelism;

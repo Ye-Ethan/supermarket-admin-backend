@@ -1,11 +1,14 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/supermarket?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:33890/supermarket?useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
-    password: yeyinan666
-  mvc:
-    throw-exception-if-no-handler-found: true
+    password: mysql@yeah666.com
+  data:
+    redis:
+      host: localhost
+      port: 16379
+      database: 0
 
 
 
@@ -18,3 +21,10 @@ server:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+jwt:
+  secret: supermarket?password+secret#for(jwt
+  expire: 900
+sec:
+  iterations: 3
+  parallelism: 3
+  memory: 1024

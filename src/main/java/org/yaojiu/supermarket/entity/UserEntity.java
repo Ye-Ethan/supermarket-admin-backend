@@ -4,9 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
-import static org.yaojiu.supermarket.utils.SecurityUtil.hash;
 
 @Data
 @TableName("user")
@@ -20,12 +19,9 @@ public class UserEntity {
     private Integer userType;
     public UserDTO toDTO() {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(id);
         userDTO.setUsername(username);
         userDTO.setUserType(userType);
         return userDTO;
-    }
-    public UserEntity desPwd(){
-        this.password = hash(password);
-        return this;
     }
 }

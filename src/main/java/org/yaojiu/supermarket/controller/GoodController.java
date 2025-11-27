@@ -10,8 +10,8 @@ import org.yaojiu.supermarket.entity.Result;
 import org.yaojiu.supermarket.service.GoodService;
 import org.yaojiu.supermarket.utils.DynamicQueryUtils;
 
-import javax.annotation.Resource;
-import javax.validation.Valid;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController

@@ -4,20 +4,23 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 
 /**
  * @author Ethan
  */
+@Slf4j
 @Component
 @Data
 @ConfigurationProperties(prefix = "jwt")
-public class JwtUtil {
+public class JwtUtils {
 
     private String secret;
     private Long expire;
@@ -30,12 +33,12 @@ public class JwtUtil {
      */
     public String generateToken(Map<String,Object> claims, String subject) {
         return Jwts.builder()
-                .setId(Claims.ID)//设置jti(JWT ID)：是JWT的唯一标识，根据业务需要，这个可以设置为一个不重复的值，主要用来作为令牌的唯一标识。
-                .setSubject(subject)//设置主题,一般为用户类型
+                .setId(UUID.randomUUID().toString())//设置jti(JWT ID)：是JWT的唯一标识，根据业务需要，这个可以设置为一个不重复的值，主要用来作为令牌的唯一标识。
+                .setSubject(subject)
                 .setIssuedAt(new Date())//设置签发时间
                 .addClaims(claims)//设置负载
                 .signWith(SignatureAlgorithm.HS256,secret )//设置签名算法
-                .setExpiration(new Date(System.currentTimeMillis() + expire))//设置令牌过期时间
+                .setExpiration(new Date(System.currentTimeMillis() + expire*100))//设置令牌过期时间
                 .compact();//生成令牌
     }
 

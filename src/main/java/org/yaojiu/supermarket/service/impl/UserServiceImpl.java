@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.yaojiu.supermarket.entity.UserDTO;
 import org.yaojiu.supermarket.entity.UserEntity;
 import org.yaojiu.supermarket.exception.LoginException;
+import org.yaojiu.supermarket.exception.NeedLoginException;
 import org.yaojiu.supermarket.mapper.UserMapper;
-import org.yaojiu.supermarket.service.AuthService;
+import org.yaojiu.supermarket.service.UserService;
 import org.yaojiu.supermarket.utils.SecurityUtils;
 
 @Service
-public class AuthServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements AuthService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
 
     @Autowired
     private SecurityUtils securityUtils;
@@ -31,4 +32,11 @@ public class AuthServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
          if(one != null) throw new LoginException("用户已存在");
          return save(userEntity);
      }
+
+    @Override
+    public UserDTO getUserById(Integer userId) {
+        UserEntity one = getOne(Wrappers.lambdaQuery(UserEntity.class).eq(UserEntity::getId, userId));
+        if(one != null) return one.toDTO();
+        return null;
+    }
 }
